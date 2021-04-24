@@ -1,4 +1,4 @@
-FROM postgres:9.3
+FROM postgres:11
 
 RUN sed -i 's/$/ 9.2/' /etc/apt/sources.list.d/pgdg.list
 
@@ -8,10 +8,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
 ENV PGBINOLD /usr/lib/postgresql/9.2/bin
-ENV PGBINNEW /usr/lib/postgresql/9.3/bin
+ENV PGBINNEW /usr/lib/postgresql/11/bin
 
 ENV PGDATAOLD /var/lib/postgresql/9.2/data
-ENV PGDATANEW /var/lib/postgresql/9.3/data
+ENV PGDATANEW /var/lib/postgresql/11/data
 
 RUN mkdir -p "$PGDATAOLD" "$PGDATANEW" \
 	&& chown -R postgres:postgres /var/lib/postgresql
